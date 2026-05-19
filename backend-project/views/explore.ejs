@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title || 'Dining' %></title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <%- include('partials/header') %>
+
+    <main class="dining-page">
+        <section class="content-hero dining-hero">
+            <p class="content-eyebrow">Dining</p>
+            <h1>Dine In and Try Chef Special of the Day</h1>
+            <p class="content-lead">No Subway section here now. You can directly add today's chef special to cart.</p>
+        </section>
+
+        <section class="chef-special-banner">
+            <div class="chef-special-copy">
+                <span class="chef-special-badge">Chef Special of the Day</span>
+                <h2>Paneer Butter Masala Platter</h2>
+                <p>Served with butter naan, salad and a refreshing drink. Perfect for a relaxed dining meal.</p>
+                <div class="chef-special-meta">
+                    <span>Prep Time: 18 mins</span>
+                    <span>Dining Only</span>
+                    <span>₹299</span>
+                </div>
+
+                <div
+                    class="item-cart-controls chef-special-cart-controls"
+                    data-name="Paneer Butter Masala Platter"
+                    data-price="299"
+                    data-image="/images/thali-icon.png"
+                >
+                    <button type="button" class="pizza-minus-btn">-</button>
+                    <span class="pizza-item-count">0</span>
+                    <button type="button" class="pizza-add-btn pizza-plus-btn">Add +</button>
+                </div>
+            </div>
+
+            <div class="chef-special-image">
+                <img src="/images/thali-icon.png" alt="Chef special of the day">
+            </div>
+        </section>
+    </main>
+
+    <script src="/js/menu-cart.js"></script>
+    <%- include('partials/footer') %>
+</body>
+</html>

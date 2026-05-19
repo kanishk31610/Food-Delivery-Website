@@ -1,0 +1,64 @@
+<nav class="navbar">
+
+  <!-- LOGO -->
+  <div class="logo">
+    <a href="/">
+      <img src="/images/logo.png" alt="Logo" height="60px">
+    </a>
+  </div>
+
+  <!-- SEARCH -->
+  <div class="search-container">
+    <div class="input-group">
+      <i class="fas fa-map-marker-alt"></i>
+      <input type="text" placeholder="Your location">
+    </div>
+
+    <form class="input-group search-bar" action="/search" method="GET">
+      <i class="fas fa-search"></i>
+      <input type="text" name="q" placeholder="Search for food" value="<%= typeof query !== 'undefined' ? query : '' %>">
+    </form>
+  </div>
+
+  <!-- NAV LINKS -->
+  <ul class="nav-links">
+
+    <li><a href="/">Home</a></li>
+    <li><a href="/offers">Offers %</a></li>
+
+    <!-- 🔥 CART WITH COUNT -->
+    <li>
+      <a href="/cart" class="cart-link">
+        Cart 🛒
+        <span class="cart-count">
+          <%= typeof cartCount !== 'undefined' ? cartCount : 0 %>
+        </span>
+      </a>
+    </li>
+
+    <!-- USER -->
+    <% if (user) { %>
+      <li class="profile-wrapper">
+
+        <a href="/profile">
+          <img 
+            src="<%= user.profilePic && user.profilePic.startsWith('http') 
+                  ? user.profilePic 
+                  : '/uploads/' + (user.profilePic || 'default.png') %>" 
+            class="nav-pic"
+            onerror="this.src='/images/default.png'"
+          >
+        </a>
+
+        <div class="profile-tooltip">
+          <%= user.email %>
+        </div>
+
+      </li>
+    <% } else { %>
+      <li><a href="/signin">Sign-In</a></li>
+    <% } %>
+
+  </ul>
+
+</nav>
