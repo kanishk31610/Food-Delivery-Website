@@ -37,19 +37,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 
-const MongoStore = require("connect-mongo")(session);
+
 
 app.use(
   session({
     secret: process.env.JWT_SECRET,
     resave: false,
     saveUninitialized: false,
-    store: new MongoStore({
-      mongooseConnection: mongoose.connection,
-    }),
   }),
 );
-
 app.use(passport.initialize());
 app.use(passport.session());
 
