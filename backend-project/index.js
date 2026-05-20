@@ -45,9 +45,11 @@ app.use(
     saveUninitialized: false,
     store: MongoStore.create({
       mongoUrl: process.env.MONGO_URI,
+      ttl: 14 * 24 * 60 * 60,
     }),
   }),
 );
+
 app.use(passport.initialize());
 app.use(passport.session());
 
