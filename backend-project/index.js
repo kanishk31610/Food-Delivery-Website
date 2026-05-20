@@ -1,4 +1,5 @@
 require("dotenv").config();
+const mongoose = require("mongoose");
 
 const express = require("express");
 const path = require("path");
@@ -36,16 +37,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 
-const MongoStore = require("connect-mongo");
+const MongoStore = require("connect-mongo")(session);
 
 app.use(
   session({
     secret: process.env.JWT_SECRET,
     resave: false,
     saveUninitialized: false,
-    store: MongoStore.create({
-      mongoUrl: process.env.MONGO_URI,
-      ttl: 14 * 24 * 60 * 60,
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
     }),
   }),
 );
