@@ -36,11 +36,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 
-app.use(session({
-  secret: "secret123",
-  resave: false,
-  saveUninitialized: false
-}));
+app.use(
+  session({
+    secret: process.env.JWT_SECRET,
+    resave: false,
+    saveUninitialized: false,
+  }),
+);
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -64,12 +66,6 @@ app.use((req, res) => {
 });
 
 // ================= SERVER =================
-const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
-
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
